@@ -7,7 +7,7 @@ Rapid and accurate detection of COVID-19 is a crucial step to control the virus.
 ### Introduction
 This repository includes the code for reproducing the following paper which was published in Electronics Letters on 21 October 2020.
 
-<center><img src="EDANet_result.png" height="185"></img></center>
+<center><img src="EDANet.png" height="185"></img></center>
 
 If you use this code, please consider citing:
 
