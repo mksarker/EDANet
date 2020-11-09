@@ -1,0 +1,1 @@
+The COVIDx dataset is collected from https://github.com/ieee8023/covid-chestxray-dataset and split it train and test set by following the paper, COVID-Net: A Tailored Deep Convolutional Neural Network Design for Detection of COVID-19 Cases from Chest X-Ray Images (https://arxiv.org/abs/2003.09871)
