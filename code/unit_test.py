@@ -4,6 +4,7 @@
 @author: Md Mostafa Kamal Sarker
 @ email: m.kamal.sarker@gmail.com
 @ Date: 17.05.2020
+# Note: can compute the model parameters
 """
 
 import unittest
