@@ -1,7 +1,10 @@
-###########################################################################
-# This file took from https://github.com/junfu1115/DANet
-###########################################################################
-
+"""
+# This file adopted from https://github.com/junfu1115/DANet and 
+@ modified by: Md Mostafa Kamal Sarker
+@ email: m.kamal.sarker@gmail.com
+@ Date: 17.05.2020
+# This python file for define the PAM and CAM module
+"""
 import numpy as np
 import torch
 import os
@@ -86,9 +89,9 @@ class CAM_Module(Module):
 
 
 class DuaAttn(nn.Module):
+    """ Dual attention module, feature summed by PAM and CAM module"""
     def __init__(self, in_channels):
         super(DuaAttn, self).__init__()
-
         self.sa = PAM_Module(in_channels)
         self.sc = CAM_Module(in_channels)
 

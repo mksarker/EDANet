@@ -1,4 +1,5 @@
 """
+# This python file is an implementation of proposed efficient dual attention networks (EDA)
 @author: Md Mostafa Kamal Sarker
 @ email: m.kamal.sarker@gmail.com
 @ Date: 23.05.2017
@@ -11,36 +12,35 @@ from attention import PAM_Module, CAM_Module, DuaAttn
 from itertools import chain
 from efficientnet import EfficientNet
 
-
 class EDANet(nn.Module):
+    """ efficient dual attention networks (EDA)"""
     def __init__(self, num_classes=3, inplanes=1):
         super(EDANet, self).__init__()
-
-        ### DUAttn 
-        # self.dua1= DuaAttn(24)
+        
+        ## DuaAttn blocks 
         self.dua2= DuaAttn(40)
         self.dua3= DuaAttn(112)
         self.dua4= DuaAttn(192)
         self.dua5= DuaAttn(320)
 
-
-        # stem to the efficientnet
+        ## stem to the efficientnet (initial block)
         self._conv_stem = nn.Conv2d(inplanes, 32, kernel_size=3, stride=2, padding=1, bias=False)
         self._bn0 = nn.BatchNorm2d(32)
         
-        ## EfficinetNet backbone
+        ## EfficinetNet pretrained backbone
         self.model = EfficientNet.from_pretrained('efficientnet-b0')
+        ## delete the final FC layer of EfficinetNet
         del self.model._fc
+        ## In case of using different backbones of EfficinetNet
         # self._conv_final = nn.Conv2d(1280, 320, kernel_size=3, bias=False)
         self._avg_pooling = nn.AdaptiveAvgPool2d(1)
         self._fc = nn.Linear(1280, num_classes)
         self.softmax = nn.Softmax(dim = 1)
     
     def forward(self, inputs):
+        bs = inputs.size(0)   
         ## define backbone   
-        bs = inputs.size(0)    
         backbone = self.model
-
         # Convolution layers
         x = backbone._swish(self._bn0(self._conv_stem(inputs)))
         # print("stem:", x.size())

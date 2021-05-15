@@ -1,5 +1,6 @@
 
 """
+# This python file is an Unit test 
 @author: Md Mostafa Kamal Sarker
 @ email: m.kamal.sarker@gmail.com
 @ Date: 17.05.2020
@@ -20,13 +21,11 @@ class TestWrapper(unittest.TestCase):
 
     def test_wrapper(self):
         device = torch.device("cuda")
-        # net = EDANet(num_classes=2).to(device)
-        net = models.resnet50(pretrained=True)
-
+        net = EDANet(num_classes=2).to(device)
         # print(net)
         # params = list(net.parameters()) 
-        count=count_parameters(net)
-        print ("Params:",count)
+        # count=count_parameters(net)
+        # print ("Params:",count)
 
         # params and MACs
         macs, params = get_model_complexity_info(net, (1, 244, 244), as_strings=True,

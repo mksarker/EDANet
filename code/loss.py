@@ -1,7 +1,13 @@
+"""
+# This python file is implemented eloss functions
+@author: Md Mostafa Kamal Sarker
+@ email: m.kamal.sarker@gmail.com
+@ Date: 23.05.2017
+"""
+
 import numpy as np
 import torch
 import torch.nn.functional as F
-
 
 
 def focal_loss(labels, logits, alpha, gamma):
@@ -33,7 +39,6 @@ def focal_loss(labels, logits, alpha, gamma):
 
     focal_loss /= torch.sum(labels)
     return focal_loss
-
 
 
 def CB_loss(labels, logits, samples_per_cls, no_of_classes, loss_type, beta, gamma):

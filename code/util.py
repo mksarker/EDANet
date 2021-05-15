@@ -1,9 +1,11 @@
 
-#######################################################################################
-# This file took from Github repo: https://github.com/lukemelas/EfficientNet-PyTorch
-########################################################################################
-
 """
+# This file adopted from https://github.com/lukemelas/EfficientNet-PyTorch and 
+@ modified by: Md Mostafa Kamal Sarker
+@ email: m.kamal.sarker@gmail.com
+@ Date: 17.05.2020
+# This python file is the utils of EfficientNet
+
 This file contains helper functions for building the model and for loading model parameters.
 These helper functions are built to mirror those in the official TensorFlow implementation.
 """
@@ -259,6 +261,7 @@ def efficientnet(width_coefficient=None, depth_coefficient=None, dropout_rate=0.
     """ Creates a efficientnet model. """
 
     blocks_args = [
+        ## modified
         # 'r1_k3_s11_e1_i32_o16_se0.25', 
         # 'r2_k3_s11_e6_i16_o24_se0.25',
         # 'r2_k5_s11_e6_i24_o40_se0.25', 

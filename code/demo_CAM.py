@@ -1,4 +1,5 @@
 """
+# This python file for visualizing the class activation maps (CAM)
 @author: Md Mostafa Kamal Sarker
 @ email: m.kamal.sarker@gmail.com
 @ Date: 17.05.2020
@@ -13,6 +14,8 @@ from torch.nn import functional as F
 import os
 import numpy as np
 import cv2
+import glob
+import time
 # function to load exif of image
 from PIL import Image, ExifTags
 from edanet import EDANet
@@ -68,6 +71,7 @@ def returnTF():
 
 def load_model():
     # this model has a last conv feature map as 14x14
+    # Select the model checkpoint path and model
     model_file = 'E:/EDANet/results/best_checkpoint.pth.tar'
     model = EDANet()
     checkpoint = torch.load(model_file,map_location=lambda storage, loc: storage)
@@ -90,14 +94,11 @@ tf = returnTF() # image transformer
 params = list(model.parameters())
 weight_softmax = params[-2].data.numpy()
 
-# retrieve and predict the uploaded images
+# source and dest folder
 sourceFolder = 'E:/EDANet/test_data/val/COVID-19/'
 resultFolder = 'E:/EDANet/results/processed/'
-moveFolder = 'E:/EDANet/results/processed/'
 
-import glob
-import time
-
+## Start the processing
 print('standby ...')
 num_total = 0
 # time_start = time.strftime('%Y-%m-%d %H:%M')
@@ -138,7 +139,7 @@ while 1:
         fid.write('"top_predictions": "%s", ' % (classes[idx[0]]))
 
         # generate class activation mapping
-        print('CAM as ' + moveFolder)
+        print('CAM as ' + resultFolder)
         CAMs = returnCAM(features_blobs[0], weight_softmax, [idx[0]])
 
         # render the CAM and output
@@ -147,7 +148,7 @@ while 1:
         heatmap = cv2.applyColorMap(cv2.resize(CAMs[0], (width, height)), cv2.COLORMAP_JET)
         result = heatmap * 0.4 + img * 0.5
         result = cv2.resize(result, (int(width*300/height), 300))
-        cv2.imwrite(moveFolder+file_id, result)
+        cv2.imwrite(resultFolder+file_id, result)
         # time_now = time.strftime('%Y-%m-%d %H:%M')
         # print('from %s to %s: processed image number: %d' % (time_start, time_now, num_total))
         print('processed image number: %d' % (num_total))

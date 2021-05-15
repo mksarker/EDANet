@@ -1,5 +1,5 @@
-### '' @ This code is Developed by: 
 """
+# This python file is trainer of EDANet
 @author: Md Mostafa Kamal Sarker
 @ email: m.kamal.sarker@gmail.com
 @ Date: 17.05.2020
@@ -166,6 +166,9 @@ def final_validate(val_loader, model, device, target_names,num_classes, criterio
 
 
 def Plot(target_var, predicted, target_names,num_classes, args):
+     """ 
+    Plots and results
+    """
     # Compute confusion matrix
     cnf_matrix = confusion_matrix(target_var, predicted)
     np.set_printoptions(precision=2)

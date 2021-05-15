@@ -1,5 +1,6 @@
-### '' @ This code is Developed by: 
 """
+# This python file is for training and validate the efficient dual attention networks (EDA)
+@ This code is Developed by: 
 @author: Md Mostafa Kamal Sarker
 @ email: m.kamal.sarker@gmail.com
 @ Date: 17.05.2020

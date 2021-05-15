@@ -1,4 +1,5 @@
 """
+# This python file for plotting confusion matrix
 @author: Md Mostafa Kamal Sarker
 @ email: m.kamal.sarker@gmail.com
 @ Date: 17.05.2020
@@ -7,7 +8,7 @@ import itertools
 import numpy as np
 import matplotlib.pyplot as plt
 
-####@@@ confusion matrix
+""" confusion matrix """
 def plot_confusion_matrix(cm, classes,
                           normalize=False,
                           title='Confusion matrix',
