@@ -1,6 +1,10 @@
-#######################################################################################
-# This file took from Github repo: https://github.com/lukemelas/EfficientNet-PyTorch
-########################################################################################
+"""
+# This file adopted from https://github.com/lukemelas/EfficientNet-PyTorch and 
+@ modified by: Md Mostafa Kamal Sarker
+@ email: m.kamal.sarker@gmail.com
+@ Date: 17.05.2020
+# This python file for define the backbone of EDANet
+"""
 
 import torch
 from torch import nn
@@ -121,6 +125,7 @@ class EfficientNet(nn.Module):
         global_params (namedtuple): A set of GlobalParams shared between blocks
     Example:
         model = EfficientNet.from_pretrained('efficientnet-b0')
+        Note: extract_features_blocks and final FC layers are modififed to adpoted with EDANet
     """
 
     def __init__(self, blocks_args=None, global_params=None, num_classes= 1000):
@@ -183,7 +188,11 @@ class EfficientNet(nn.Module):
 
 
     def extract_features_block1(self, x):
-        """ Returns output of the final convolution layer """
+        """ 
+        Modified for using initial tow layers of efficientnet-b0 backbone 
+        Note: If backbone change then layers should also be adjusted)
+         
+         """
 
         # Blocks_1
         for idx, block in enumerate(self._blocks[:2]):
@@ -196,7 +205,11 @@ class EfficientNet(nn.Module):
         return x
     
     def extract_features_block2(self, x):
-        """ Returns output of the final convolution layer """
+        """ 
+        Modified for using initial tow layers of efficientnet-b0 backbone 
+        Note: If backbone change then layers should also be adjusted)
+         
+         """
        
         # Blocks_2
         for idx, block in enumerate(self._blocks[2:4]):
@@ -209,7 +222,11 @@ class EfficientNet(nn.Module):
         return x
     
     def extract_features_block3(self, x):
-        """ Returns output of the final convolution layer """
+        """ 
+        Modified for using initial tow layers of efficientnet-b0 backbone 
+        Note: If backbone change then layers should also be adjusted)
+         
+         """
        
         # Blocks_3
         for idx, block in enumerate(self._blocks[4:9]):
@@ -222,7 +239,11 @@ class EfficientNet(nn.Module):
         return x
     
     def extract_features_block4(self, x):
-        """ Returns output of the final convolution layer """
+        """ 
+        Modified for using initial tow layers of efficientnet-b0 backbone 
+        Note: If backbone change then layers should also be adjusted)
+         
+         """
        
         # Blocks_4
         for idx, block in enumerate(self._blocks[9:12]):
@@ -235,7 +256,11 @@ class EfficientNet(nn.Module):
         return x
     
     def extract_features_block5(self, x):
-        """ Returns output of the final convolution layer """
+        """ 
+        Modified for using initial tow layers of efficientnet-b0 backbone 
+        Note: If backbone change then layers should also be adjusted)
+         
+         """
        
         # Blocks_5
         for idx, block in enumerate(self._blocks[12:]):
@@ -249,7 +274,11 @@ class EfficientNet(nn.Module):
 
 
     def forward(self, inputs):
-        """ Calls extract_features to extract features, applies final linear layer, and returns logits. """
+        """ 
+        Calls extract_features from differt blocks to extract features, 
+        applies final linear layer, and returns logits. 
+        
+        """
         bs = inputs.size(0)
         ## initial layer
         x = self._swish(self._bn0(self._conv_stem(inputs)))
